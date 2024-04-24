@@ -1,8 +1,14 @@
-const heading = React.createElement("h1", {id: "heading"}, "Hello world from React")
-const heading2 = React.createElement("p", {id: "heading2"}, "Best Course Ever!")
-const root = ReactDOM.createRoot(document.getElementById("root"))
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const parentElement = React.createElement("div",{id: "parentElement"}, heading, heading2)
-console.log(parentElement)
+const parent = React.createElement('div', { id: 'parent' }, [
+  React.createElement('div', { id: 'child1' }, [
+    React.createElement('h1', {}, 'Im h1 tag'),
+    React.createElement('h2', {}, 'Im h2 tag'),
+  ]),
+  React.createElement('div', { id: 'child2' }, [
+    React.createElement('h1', {}, "Im h1 tag"),
+    React.createElement('h2', {}, "Im h2 tag")
+  ]),
+]);
 
-root.render(parentElement)
+root.render(parent);
