@@ -1,8 +1,7 @@
-#parentElement {
-    background: blue;
+.title {
     color: red;
 }
 
-.heading {
-    color: red;
+.description {
+    color: blue;
 }
