@@ -7,6 +7,7 @@ const restaurants = [
   {
     type: 'restaurant',
     data: {
+      id: "guidfhgiudfh23479",
       name: 'Delicious Bites',
       tags: ['Italian', 'Pizza', 'Pasta'],
       review: 4.5,
@@ -22,6 +23,7 @@ const restaurants = [
   {
     type: 'restaurant',
     data: {
+      id: "hgyuguyguygugguyg67",
       name: 'Tasty Treats',
       tags: ['American', 'Burgers', 'Fries'],
       review: 4.2,
@@ -61,15 +63,15 @@ const Search = () => {
 };
 
 const Card = (props) => {
-  const { restaurantData } = props;
+  const { name, tags, review, deliveryTime, costForTwo, image } = props.restaurantData.data;
   return (
     <div className='restaurant-card'>
-      <img className='restaurant-photo' src={restaurantData.data.image} />
-      <h3>{restaurantData.data.name}</h3>
-      <h6>{restaurantData.data.tags.join(', ')}</h6>
-      <h6>Review {restaurantData.data.review}/5.0</h6>
-      <h6>Delivery Time {restaurantData.data.deliveryTime}</h6>
-      <h6>${restaurantData.data.costForTwo} For Two</h6>
+      <img className='restaurant-photo' src={image} />
+      <h3>{name}</h3>
+      <h6>{tags.join(', ')}</h6>
+      <h6>Review {review}/5.0</h6>
+      <h6>Delivery Time {deliveryTime}</h6>
+      <h6>${costForTwo} For Two</h6>
     </div>
   );
 };
@@ -81,8 +83,8 @@ const Body = () => {
         <Search />
       </div>
       <div className='restaurantsContainer'>
-        {restaurants.map((restaurant, index) => (
-          <Card key={index} restaurantData={restaurant} />
+        {restaurants.map((restaurant) => (
+          <Card key={restaurant.data.id} restaurantData={restaurant} />
         ))}
       </div>
     </div>
