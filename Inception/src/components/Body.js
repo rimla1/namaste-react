@@ -1,18 +1,29 @@
-import { Search } from './Search';
-import {Card} from "./Card";
+import { Card } from './Card';
 import { restaurants } from '../utils/restaurants';
+import { useState } from 'react';
 
 export const Body = () => {
-    return (
-      <div className='body'>
-        <div className='search'>
-          <Search />
-        </div>
-        <div className='restaurantsContainer'>
-          {restaurants.map((restaurant) => (
-            <Card key={restaurant.data.id} restaurantData={restaurant} />
-          ))}
-        </div>
+  const [restaurantsState, setRestaurantsState] = useState(restaurants);
+  return (
+    <div className='body'>
+      <div className='filter'>
+        <button
+          className='filter-btn'
+          onClick={() => {
+            const filteredRestaurants = restaurantsState.filter(
+              (restaurant) => restaurant.data.review > 4
+            );
+            setRestaurantsState(filteredRestaurants);
+          }}
+        >
+          Top Rated Restaurants
+        </button>
       </div>
-    );
-  };
+      <div className='restaurantsContainer'>
+        {restaurantsState.map((restaurant) => (
+          <Card key={restaurant.data.id} restaurantData={restaurant} />
+        ))}
+      </div>
+    </div>
+  );
+};
