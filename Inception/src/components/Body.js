@@ -18,6 +18,8 @@ export const Body = () => {
     setFilteredRestaurants(jsonData)
   };
 
+  console.log("RENDER")
+
   return restaurants.length === 0 ? (
     <Shimmer />
   ) : (
