@@ -4,7 +4,7 @@ import Shimmer from './Shimmer';
 
 export const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
-  const [filteredRestaurants, setFilteredRestaurants] = useState([])
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
@@ -17,8 +17,6 @@ export const Body = () => {
     setRestaurants(jsonData);
     setFilteredRestaurants(jsonData)
   };
-
-  console.log("RENDER")
 
   return restaurants.length === 0 ? (
     <Shimmer />
