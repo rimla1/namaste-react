@@ -148,3 +148,12 @@
   .login-btn:hover {
     background-color: #0056b3; 
   }
+
+  .filter {
+    display: flex;
+  }
+
+  .search {
+    margin: 10px;
+    padding: 10px;
+  }
