@@ -1,6 +1,7 @@
 import { Card } from './Card';
 import { useEffect, useState } from 'react';
 import Shimmer from './Shimmer';
+import { Link } from 'react-router-dom';
 
 export const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -12,7 +13,6 @@ export const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    console.log("Fetchujem!!!!")
     const data = await fetch('http://localhost:3000/restaurants');
     const jsonData = await data.json();
     setRestaurants(jsonData);
@@ -58,7 +58,7 @@ export const Body = () => {
       </div>
       <div className='restaurantsContainer'>
         {filteredRestaurants.map((restaurant) => (
-          <Card key={restaurant.data.id} restaurantData={restaurant} />
+          <Link key={restaurant.data.id}  to={"restaurants/" + restaurant.data.id}><Card restaurantData={restaurant} /></Link>
         ))}
       </div>
     </div>
