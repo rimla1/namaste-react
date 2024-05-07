@@ -12,6 +12,7 @@ export const Body = () => {
   }, []);
 
   const fetchData = async () => {
+    console.log("Fetchujem!!!!")
     const data = await fetch('http://localhost:3000/restaurants');
     const jsonData = await data.json();
     setRestaurants(jsonData);
