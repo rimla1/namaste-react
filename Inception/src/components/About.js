@@ -1,8 +1,12 @@
+import TeamMember from './TeamMember';
+import TeamMemberClass from './TeamMemberClass';
+
 const About = () => {
   return (
     <div>
-      <h1>About Us</h1>
-      <p>Best Lol Website</p>
+      <h1>Meet our team!</h1>
+      <p>Coolest team ever</p>
+      <TeamMember />
     </div>
   );
 };
