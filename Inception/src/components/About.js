@@ -1,5 +1,4 @@
 import TeamMember from './TeamMember';
-import TeamMemberClass from './TeamMemberClass';
 
 const About = () => {
   return (

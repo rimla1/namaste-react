@@ -9,7 +9,6 @@ import Contact from './components/Contact';
 import Error from './components/Error';
 import { Outlet } from 'react-router-dom';
 import Restaurant from './components/Restaurant';
-import AboutClass from './components/AboutClass';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -34,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/about',
-        element: <AboutClass />,
+        element: <About />,
       },
       {
         path: '/contact',
