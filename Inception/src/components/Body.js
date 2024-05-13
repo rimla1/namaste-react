@@ -3,23 +3,13 @@ import { useEffect, useState } from 'react';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../utils/useOnlineStatus';
+import useRestaurantsData from '../utils/useRestaurantsData';
 
 export const Body = () => {
-  const [restaurants, setRestaurants] = useState([]);
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-  const [searchText, setSearchText] = useState('');
+  const {restaurants, filteredRestaurants, setFilteredRestaurants} = useRestaurantsData()
   const onlineStatus = useOnlineStatus()
+  const [searchText, setSearchText] = useState('');
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const data = await fetch('http://localhost:3000/restaurants');
-    const jsonData = await data.json();
-    setRestaurants(jsonData);
-    setFilteredRestaurants(jsonData)
-  };
 
   if(onlineStatus === false) return <h1>No internet connection</h1>
 
