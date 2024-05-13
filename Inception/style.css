@@ -188,3 +188,12 @@
     font-size: 1.2em; /* Increase font size for Role */
   }
   
+
+  .dot {
+    height: 8px;
+    width: 8px;
+    background-color: rgb(16, 235, 89);
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+  }

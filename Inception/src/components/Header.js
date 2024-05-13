@@ -1,9 +1,11 @@
 import { LOGO_URL } from '../utils/constants';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import useOnlineStatus from '../utils/useOnlineStatus';
 
 export const Header = () => {
   const [buttonValue, setButtonValue] = useState('Login');
+  const onlineStatus = useOnlineStatus()
 
   return (
     <div className='header'>
@@ -12,6 +14,9 @@ export const Header = () => {
       </div>
       <div className='nav-items'>
         <ul>
+          <li>
+            <span className="dot" style={{ backgroundColor: onlineStatus === true ? 'green' : 'red' }}></span>
+          </li>
           <li>
             <Link to='/'>Home</Link>
           </li>

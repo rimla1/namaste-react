@@ -2,11 +2,13 @@ import { Card } from './Card';
 import { useEffect, useState } from 'react';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
+import useOnlineStatus from '../utils/useOnlineStatus';
 
 export const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const onlineStatus = useOnlineStatus()
 
   useEffect(() => {
     fetchData();
@@ -18,6 +20,8 @@ export const Body = () => {
     setRestaurants(jsonData);
     setFilteredRestaurants(jsonData)
   };
+
+  if(onlineStatus === false) return <h1>No internet connection</h1>
 
   return restaurants.length === 0 ? (
     <Shimmer />
