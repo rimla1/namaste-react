@@ -15,11 +15,11 @@ const TeamMember = () => {
   };
 
   return (
-    <div className='team-members-container'>
-      <div className='team-member'>
-        <img className='team-member-img' src={teamMember?.avatar_url} />
-        <h1>{teamMember?.name}</h1>
-        <h2>{teamMember?.bio}</h2>
+    <div>
+      <div >
+        <img className='rounded-2xl shadow-lg h-40 w-40' src={teamMember?.avatar_url} />
+        <h1 className='py-1'>{teamMember?.name}</h1>
+        <h2 className='py-1'>{teamMember?.bio}</h2>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ const Restaurant = () => {
   return restaurantInfo === null ? (
     <Shimmer />
   ) : (
-    <div className='restaurant'>
+    <div className='p-4 m-4 border border-solid border-black rounded-xl shadow-lg'>
       <div className='restaurantInfo'>
         <h1>
           {restaurantInfo?.data?.name} : {restaurantInfo?.data?.review}
