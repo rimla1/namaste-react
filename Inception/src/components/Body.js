@@ -4,12 +4,14 @@ import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../utils/useOnlineStatus';
 import useRestaurantsData from '../utils/useRestaurantsData';
+import { withPromotedTag } from './Card';
 
 export const Body = () => {
   const { restaurants, filteredRestaurants, setFilteredRestaurants } =
     useRestaurantsData();
   const onlineStatus = useOnlineStatus();
   const [searchText, setSearchText] = useState('');
+  const PromotedCard = withPromotedTag(Card);
 
   if (onlineStatus === false) return <h1>No internet connection</h1>;
 
@@ -61,7 +63,11 @@ export const Body = () => {
             key={restaurant.data.id}
             to={'restaurants/' + restaurant.data.id}
           >
-            <Card restaurantData={restaurant} />
+            {restaurant.data.isPromoted ? (
+              <PromotedCard restaurantData={restaurant} />
+            ) : (
+              <Card restaurantData={restaurant} />
+            )}
           </Link>
         ))}
       </div>
