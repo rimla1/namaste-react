@@ -1,5 +1,4 @@
 const ItemCategory = ({ items }) => {
-  console.log(items);
   return (
     <div className='m-1 p-1 bg-gray-100'>
       {items?.map((item, index) => {

@@ -10,7 +10,6 @@ const TeamMember = () => {
   const fetchData = async () => {
     const data = await fetch('https://api.github.com/users/rimla1');
     const jsonData = await data.json();
-    console.log(jsonData)
     setTeamMember(jsonData);
   };
 

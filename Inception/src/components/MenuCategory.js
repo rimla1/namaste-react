@@ -1,14 +1,10 @@
-import { useState } from 'react';
 import ItemCategory from './ItemCategory';
 
 const MenuCategory = (props) => {
-  const [showItems, setShowItems] = useState(false);
-
-    const handleClick = () => {
-        setShowItems(!showItems)
-    }
-
-  const { categoryData } = props;
+  const { categoryData, showItems, changeIndex, closeIndex } = props;
+  const handleClick = () => {
+    showItems ? closeIndex() : changeIndex()
+}
   return (
     <div className='w-6/12 m-auto my-4'>
       <div
