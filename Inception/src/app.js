@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Header } from './components/Header';
 import { Body } from './components/Body';
 import { Footer } from './components/Footer';
@@ -10,19 +10,28 @@ import Error from './components/Error';
 import { Outlet } from 'react-router-dom';
 import Restaurant from './components/Restaurant';
 import Shimmer from './components/Shimmer';
+import UserContext from './utils/UserContext';
 // import Grocery from './components/Grocery';
 
-const Grocery = lazy(() => import('./components/Grocery'))
+const Grocery = lazy(() => import('./components/Grocery'));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const AppLayout = () => {
+  const [username, setUsername] = useState('Rimla');
+  useEffect(() => {
+    const user = 'Almir Muminović';
+    setUsername(user);
+  }, []);
+
   return (
-    <div className='app'>
-      <Header />
-      <Outlet />
-      <Footer />
-    </div>
+    <UserContext.Provider value={{ username: username, setUsername }}>
+      <div className='app'>
+        <Header />
+        <Outlet />
+        <Footer />
+      </div>
+    </UserContext.Provider>
   );
 };
 
@@ -33,7 +42,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Body/>
+        element: <Body />,
       },
       {
         path: '/about',
@@ -45,16 +54,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/restaurants/:id',
-        element: <Restaurant />
+        element: <Restaurant />,
       },
       {
         path: '/grocery',
-        element: <Suspense fallback={<Shimmer />}><Grocery /></Suspense>
-      }
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Grocery />
+          </Suspense>
+        ),
+      },
     ],
-    errorElement: <Error />
+    errorElement: <Error />,
   },
-
 ]);
 
 root.render(<RouterProvider router={router} />);

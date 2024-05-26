@@ -1,10 +1,11 @@
 import { Card } from './Card';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../utils/useOnlineStatus';
 import useRestaurantsData from '../utils/useRestaurantsData';
 import { withPromotedTag } from './Card';
+import UserContext from '../utils/UserContext';
 
 export const Body = () => {
   const { restaurants, filteredRestaurants, setFilteredRestaurants } =
@@ -12,6 +13,7 @@ export const Body = () => {
   const onlineStatus = useOnlineStatus();
   const [searchText, setSearchText] = useState('');
   const PromotedCard = withPromotedTag(Card);
+  const { username, setUsername } = useContext(UserContext);
 
   if (onlineStatus === false) return <h1>No internet connection</h1>;
 
@@ -54,6 +56,13 @@ export const Body = () => {
             >
               Top Rated Restaurants
             </button>
+            <input
+              className='border border-solid border-black'
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+              value={username}
+            />
           </div>
         </div>
       </div>
