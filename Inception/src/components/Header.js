@@ -3,11 +3,15 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../utils/useOnlineStatus';
 import UserContext from '../utils/UserContext';
+import { useSelector } from 'react-redux';
 
 export const Header = () => {
   const [buttonValue, setButtonValue] = useState('Login');
-  const onlineStatus = useOnlineStatus()
-  const {username} = useContext(UserContext)
+  const onlineStatus = useOnlineStatus();
+  const { username } = useContext(UserContext);
+  const items = useSelector((state) => {
+    return state.cart.items.length;
+  });
 
   return (
     <div className='flex justify-between shadow'>
@@ -17,7 +21,9 @@ export const Header = () => {
       <div className='items-center'>
         <ul className='flex p-4 m-4'>
           <li className='px-4'>
-            <span className={onlineStatus === true ? 'bg-green-800' : 'bg-red-800'}></span>
+            <span
+              className={onlineStatus === true ? 'bg-green-800' : 'bg-red-800'}
+            ></span>
           </li>
           <li className='px-4'>
             <Link to='/'>Home</Link>
@@ -31,7 +37,9 @@ export const Header = () => {
           <li className='px-4'>
             <Link to='/grocery'>Grocery</Link>
           </li>
-          <li className='px-4'>Cart</li>
+          <li className='px-4 font-bold'>
+            <Link to='/cart'>Cart - {items} items</Link>
+          </li>
           <button
             className='login-btn'
             onClick={() => {
@@ -42,9 +50,7 @@ export const Header = () => {
           >
             {buttonValue}
           </button>
-          <li className='px-4'>
-            {username}
-          </li>
+          <li className='px-4'>{username}</li>
         </ul>
       </div>
     </div>
